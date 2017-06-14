@@ -31,7 +31,7 @@ class NoteForm extends Component {
         
         this.setState({
             notes: updatedNotes
-        },() => console.log(this.state.notes))
+        })
     } 
 
     render() {
