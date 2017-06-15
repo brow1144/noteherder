@@ -1,10 +1,10 @@
 # Noteherder
 
-## Day 7 Homework (Completed!)
+## Day 7 Homework
 
 Finish making these components look acceptable.
 
-### Bonus Credit (Completed!)
+### Bonus Credit
 
 * Make the form work!
 

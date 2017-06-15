@@ -22,14 +22,11 @@
   cursor: pointer;
   margin-top: 2rem;
   position: relative;
-  width: 60%; 
-}
-.Sidebar button img {
+  width: 60%; }
+  .Sidebar button img {
     position: absolute;
     left: 0;
     width: 100%;
-    transition: opacity 0.25s ease-in-out; 
-}
-.Sidebar button:hover img.outline {
-      opacity: 0; 
-}
+    transition: opacity 0.25s ease-in-out; }
+    .Sidebar button:hover img.outline {
+      opacity: 0; }
