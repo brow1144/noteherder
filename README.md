@@ -4,7 +4,7 @@
 
 Finish making these components look acceptable.
 
-### Bonus Credit
+### Bonus Credit (Completed!)
 
 * Make the form work!
 
