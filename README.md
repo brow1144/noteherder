@@ -2,30 +2,38 @@
 
 ## Setup
 
-Copy 'base.example.js' to 'base.js' and add the appropriate configuration for your Firebase application
+Copy `base.example.js` to `base.js` and add the appropriate configuration for your Firebase application.
 
-## Day 7 Homework 
+## Day 7 Homework
 
-Finish making these components look acceptable. (Complete!)
+Finish making these components look acceptable.
 
 ### Bonus Credit
 
-* Make the form work! (Complete!)
+* Make the form work!
 
 ### Super Mega Bonus Credit
 
-* Make a working _delete_ button. (Complete!)
+* Make a working _delete_ button.
 
 ### Super Mega Bonus Credit Hyper Fighting
 
-* When you click on a note in the list, populate the form with the data from that note. (Complete!)
+* When you click on a note in the list, populate the form with the data from that note.
 
 ## Day 8 Homework
 
 Finish all the bonus work from yesterday.
 
-* Make a working _delete_ button. (Complete!)
-* When you click on a note in the list, populate the form with the data from that note. (Can't get onClick to work!)
+* Make a working _delete_ button.
+* When you click on a note in the list, populate the form with the data from that note.
+
+### Super Mega Bonus Credit
+
+* Make the _new note_ button in `Sidebar` clear out the form with a blank note. (Then you can get rid of the _save and new_ button in `NoteForm`).
+
+### Super Mega Bonus Credit Hyper Fighting
+
+* Have a nice weekend!
 
 ## About Noteherder
 

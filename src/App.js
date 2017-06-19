@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import './App.css';
+import './App.css'
 import Main from './Main'
 import SignIn from './SignIn'
 import SignOut from './SignOut'
-import base from './base'
+import base, { auth } from './base'
 
 class App extends Component {
   constructor() {
@@ -17,8 +17,12 @@ class App extends Component {
   }
 
   componentWillMount() {
+    
+  }
+
+  syncNotes = () => {
     base.syncState(
-      'notes',
+      `${this.state.uid}/notes`,
       {
         context: this,
         state: 'notes',
@@ -27,7 +31,7 @@ class App extends Component {
   }
 
   saveNote = (note) => {
-    if(!note.id) {
+    if (!note.id) {
       note.id = `note-${Date.now()}`
     }
     const notes = {...this.state.notes}
@@ -35,34 +39,29 @@ class App extends Component {
     this.setState({ notes })
   }
 
-  deleteNote = (note) => {
-    const notes = {...this.state.notes}
-    delete notes[note.id]
-    this.setState({ notes })
-  }
-
   signedIn = () => {
     return this.state.uid
   }
 
-  signOut = () => {
-    this.setState({ uid: null })
+  authHandler = (user) => {
+    this.setState(
+      { uid: user.uid },
+      this.syncNotes
+    )
   }
 
-  authHandler = (user) => {
-    this.setState({ uid: user.uid })
+  signOut = () => {
+    auth
+      .signOut()
+      .then(this.setState({ uid: null }))
   }
 
   renderMain = () => {
-    return ( 
-        <div>
-          <SignOut signOut={this.signOut} />
-          <Main 
-            notes={this.state.notes}
-            saveNote={this.saveNote}
-            deleteNote={this.deleteNote}
-           />
-        </div>
+    return (
+      <div>
+        <SignOut signOut={this.signOut} />
+        <Main notes={this.state.notes} saveNote={this.saveNote} />
+      </div>
     )
   }
 
@@ -71,7 +70,7 @@ class App extends Component {
       <div className="App">
         { this.signedIn() ? this.renderMain() : <SignIn authHandler={this.authHandler} /> }
       </div>
-    );
+    )
   }
 }
 

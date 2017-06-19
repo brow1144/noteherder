@@ -18,25 +18,18 @@ class NoteForm extends Component {
       body: '',
     }
   }
- 
+
   handleChanges = (ev) => {
     const note = {...this.state.note}
     note[ev.target.name] = ev.target.value
     this.setState(
-      { note }, 
+      { note },
       () => this.props.saveNote(this.state.note)
     )
   }
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-
-    this.setState({ note: this.blankNote() })
-  }
-
-  deleteNote = (ev) => {
-    const note = {...this.state.note}
-    this.props.deleteNote(note)
     this.setState({ note: this.blankNote() })
   }
 
@@ -61,8 +54,9 @@ class NoteForm extends Component {
               value={this.state.note.body}
             ></textarea>
           </p>
-          <button type="submit">Save and New</button>
-          <button onClick={this.deleteNote} type="button">Delete Item</button>
+          <button type="submit">
+            Save and new
+          </button>
         </form>
       </div>
     )
