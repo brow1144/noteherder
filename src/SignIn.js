@@ -5,11 +5,7 @@ import { auth, githubProvider } from './base'
 
 const SignIn = ({ authHandler }) => {
   const authenticate = () => {
-    auth
-      .signInWithPopup(githubProvider)
-      .then((data) => {
-        authHandler(data.user)
-      })
+    auth.signInWithPopup(githubProvider)
   }
 
   return (

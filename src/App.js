@@ -17,7 +17,13 @@ class App extends Component {
   }
 
   componentWillMount() {
-    
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.authHandler(user)
+      } else {
+        this.setState({ uid: null })
+      }
+    })
   }
 
   syncNotes = () => {
@@ -51,9 +57,7 @@ class App extends Component {
   }
 
   signOut = () => {
-    auth
-      .signOut()
-      .then(this.setState({ uid: null }))
+    auth.signOut()
   }
 
   renderMain = () => {
