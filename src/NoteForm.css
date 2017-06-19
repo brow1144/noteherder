@@ -20,6 +20,16 @@
   font-size: 1.4rem;
   padding: 1rem;
 }
+
+.NoteForm button[type="button"] {
+  background-color: #008BF8;
+  border-radius: 4px;
+  color: white;
+  font-size: 1.4rem;
+  padding: 1rem;
+  margin-left: 2rem;
+}
+
 .NoteForm button i.fa {
   color: #999;
   font-size: 2rem;

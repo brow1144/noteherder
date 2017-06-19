@@ -34,6 +34,10 @@ class NoteForm extends Component {
     this.setState({ note: this.blankNote() })
   }
 
+  deleteNote(ev) {
+    alert('DELETED')
+  }
+
   render() {
     return (
       <div className="NoteForm">
@@ -56,6 +60,7 @@ class NoteForm extends Component {
             ></textarea>
           </p>
           <button type="submit">Save and New</button>
+          <button onClick={this.deleteNote} type="button">Delete Item</button>
         </form>
       </div>
     )
