@@ -13,7 +13,8 @@ const Main = (props) => {
         notes={props.notes}
       />
       <NoteForm 
-        saveNote={props.saveNote}  
+        saveNote={props.saveNote} 
+        deleteNote={props.deleteNote} 
       />
     </div>
   )
