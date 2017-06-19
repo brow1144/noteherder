@@ -13,18 +13,22 @@ class App extends Component {
     this.state = {
       notes: {},
       uid: null,
-      currentNodeId: null,
+      currentNoteId: null,
     }
   }
 
   componentWillMount() {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.authHandler(user)
-      } else {
-        this.setState({ uid: null })
+    auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          // finished signing in
+          this.authHandler(user)
+        } else {
+          // finished signing out
+          this.setState({ uid: null })
+        }
       }
-    })
+    )
   }
 
   syncNotes = () => {
@@ -40,6 +44,7 @@ class App extends Component {
   saveNote = (note) => {
     if (!note.id) {
       note.id = `note-${Date.now()}`
+      this.setCurrentNoteId(note.id)
     }
     const notes = {...this.state.notes}
     notes[note.id] = note
@@ -66,8 +71,9 @@ class App extends Component {
   signOut = () => {
     auth
       .signOut()
-      .then (  
+      .then(
         () => {
+          // stop syncing with Firebase
           base.removeBinding(this.ref)
           this.setState({ notes: {} })
         }
@@ -75,7 +81,7 @@ class App extends Component {
   }
 
   setCurrentNoteId = (noteId) => {
-    this.setState({ currentNodeId: noteId })
+    this.setState({ currentNoteId: noteId })
   }
 
   renderMain = () => {
@@ -84,13 +90,17 @@ class App extends Component {
       removeNote: this.removeNote,
       setCurrentNoteId: this.setCurrentNoteId,
     }
+    const noteData = {
+      notes: this.state.notes,
+      currentNoteId: this.state.currentNoteId,
+    }
 
     return (
       <div>
         <SignOut signOut={this.signOut} />
-        <Main 
-          notes={this.state.notes} 
-          {...actions} 
+        <Main
+          {...noteData}
+          {...actions}
         />
       </div>
     )
@@ -99,7 +109,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.signedIn() ? this.renderMain() : <SignIn authHandler={this.authHandler} /> }
+        { this.signedIn() ? this.renderMain() : <SignIn /> }
       </div>
     )
   }

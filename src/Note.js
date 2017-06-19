@@ -2,7 +2,7 @@ import React from 'react'
 
 const Note = ({ note, setCurrentNoteId }) => {
   return (
-    <a onClick={() => setCurrentNoteId(note.id)} >
+    <a onClick={() => setCurrentNoteId(note.id)}>
       <li>
         <div className="note">
           <div className="note-title">
