@@ -5,6 +5,13 @@
 
 .SignOut button {
     outline: none;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    transition: 0.25s;
+}
+
+.SignOut button:hover {
+  font-size: 4rem;
 }
 
 .SignOut button i.fa {
