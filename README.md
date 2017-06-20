@@ -27,12 +27,6 @@ Finish all the bonus work from yesterday.
 * Make a working _delete_ button. (Completed!)
 * When you click on a note in the list, populate the form with the data from that note. (Completed!)
 
-## About Noteherder
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-Quill graphic by Icon Solid from the [Noun Project](https://thenounproject.com/).
-
 ## Day 9 Homework
 
 * When you click on a note in the list, populate the form with the data from that note. (Completed!)
@@ -48,3 +42,9 @@ Quill graphic by Icon Solid from the [Noun Project](https://thenounproject.com/)
 
 * Add another authentication method to your app, such as Twitter, Facebook, Google, email/password, etc. (Completed!)
 * Remember, the Firebase documentation is your friend. (Completed!)
+
+## About Noteherder
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+Quill graphic by Icon Solid from the [Noun Project](https://thenounproject.com/).
