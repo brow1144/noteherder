@@ -65,7 +65,7 @@ class NoteForm extends Component {
               value={this.state.note.body}
             ></textarea>
           </p>
-          <button onClick={this.handleRemove}>
+          <button type="button" onClick={this.handleRemove}>
             <i className="fa fa-trash-o"></i>
           </button>
         </form>
