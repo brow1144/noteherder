@@ -10,6 +10,7 @@ const Main = (props) => {
     <div className="Main">
       <Sidebar 
         addNote={props.addNote}
+        signOut={props.signOut}
       />
       <NoteList
         notes={props.notes}

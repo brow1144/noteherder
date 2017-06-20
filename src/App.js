@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import './App.css'
 import Main from './Main'
 import SignIn from './SignIn'
-import SignOut from './SignOut'
 import base, { auth } from './base'
 
 class App extends Component {
@@ -84,7 +83,7 @@ class App extends Component {
         () => {
           // stop syncing with Firebase
           base.removeBinding(this.ref)
-          this.setState({ notes: {} })
+          this.setState({ notes: {}})
         }
       )
   }
@@ -99,6 +98,7 @@ class App extends Component {
       removeNote: this.removeNote,
       setCurrentNoteId: this.setCurrentNoteId,
       addNote: this.addNote,
+      signOut: this.signOut,
     }
     const noteData = {
       notes: this.state.notes,
@@ -106,13 +106,10 @@ class App extends Component {
     }
 
     return (
-      <div>
-        <SignOut signOut={this.signOut} />
         <Main
           {...noteData}
           {...actions}
         />
-      </div>
     )
   }
 

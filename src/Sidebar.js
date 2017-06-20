@@ -4,6 +4,7 @@ import './Sidebar.css'
 import quill from './quill.svg'
 import newHover from './new-hover.png'
 import newIcon from './new.png'
+import SignOut from './SignOut'
 
 class Sidebar extends Component {
   render() {
@@ -16,6 +17,7 @@ class Sidebar extends Component {
           <img src={newHover} alt="New note" />
           <img className="outline" src={newIcon} alt="New note" />
         </button>
+        <SignOut signOut={this.props.signOut} />
       </nav>
     )
   }
