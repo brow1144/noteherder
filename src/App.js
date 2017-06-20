@@ -57,6 +57,15 @@ class App extends Component {
     this.setState({ notes })
   }
 
+  addNote = () => {
+    const note = {
+      id: null,
+      title: '',
+      body: '',
+    }
+    this.saveNote(note)
+  }
+
   signedIn = () => {
     return this.state.uid
   }
@@ -89,6 +98,7 @@ class App extends Component {
       saveNote: this.saveNote,
       removeNote: this.removeNote,
       setCurrentNoteId: this.setCurrentNoteId,
+      addNote: this.addNote,
     }
     const noteData = {
       notes: this.state.notes,
