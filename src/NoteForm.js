@@ -15,7 +15,7 @@ class NoteForm extends Component {
           this.props.history.push('/notes')
         }
       }
-    } else if (this.props.currentNote.i) {
+    } else if (this.props.currentNote.id) {
       this.props.resetCurrentNote()
     }
   }
