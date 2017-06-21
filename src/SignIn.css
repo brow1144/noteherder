@@ -1,3 +1,11 @@
+html { 
+  background: url(https://free4kwallpapers.com/no-watermarks/originals/2017/04/08/streets-of-new-york-city-wallpaper.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .SignIn {
   background-color: #008BF8;
   border: 0;
@@ -12,4 +20,53 @@
   font-family: 'helvetica neue', sans-serif;
   font-size: 20px;
   font-weight: 200;
+}
+
+.outterDiv {
+   background: url(https://free4kwallpapers.com/no-watermarks/originals/2017/04/08/streets-of-new-york-city-wallpaper.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.outterDiv button.bottom {
+  margin-bottom: 5rem;
+}
+
+.outterDiv h3.firstLine {
+  margin-bottom: 0;
+}
+
+.outterDiv h3.secondLine {
+  margin-top: 0;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 10rem;
+  text-align: center;
+  color: whitesmoke;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 4rem;
+  text-align: center;
+  color: whitesmoke;
+}
+
+img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.noteherderLogo {
+  margin: 0 auto;
+}
+
+.noteherderLogo {
+  width: 80px;
 }
