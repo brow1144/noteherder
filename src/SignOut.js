@@ -8,7 +8,7 @@ const SignOut = ({ signOut }) => {
       <button
         onClick={signOut}
       >
-        <i className="fa fa-sign-out"/>
+        <i className="fa fa-sign-out"></i>
       </button>
     </div>
   )

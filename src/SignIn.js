@@ -4,30 +4,24 @@ import './SignIn.css'
 import { auth, githubProvider, googleProvider } from './base'
 
 const SignIn = () => {
-  const authenticate = () => {
-    auth.signInWithPopup(githubProvider)
-  }
-
-  const authenticateGoogle = () => {
-    auth.signInWithPopup(googleProvider)
+  const authenticate = (provider) => {
+    auth.signInWithPopup(provider)
   }
 
   return (
     <div>
       <button
         className="SignIn"
-        onClick={authenticate}
+        onClick={() => authenticate(githubProvider)}
       >
-        Sign In With Github
+        Sign in with GitHub
       </button>
-
-      <button 
-        onClick={authenticateGoogle} 
-        className="SignInGoogle"
+      <button
+        className="SignIn"
+        onClick={() => authenticate(googleProvider)}
       >
-        Sign In With Google 
+        Sign in with Google
       </button>
-
     </div>
   )
 }

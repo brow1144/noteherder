@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './App.css'
 import Main from './Main'
@@ -12,11 +13,12 @@ class App extends Component {
     this.state = {
       notes: {},
       uid: null,
-      currentNoteId: null,
+      currentNote: this.blankNote(),
     }
   }
 
   componentWillMount() {
+    this.getUserFromLocalStorage()
     auth.onAuthStateChanged(
       (user) => {
         if (user) {
@@ -30,9 +32,15 @@ class App extends Component {
     )
   }
 
+  getUserFromLocalStorage() {
+    const uid = localStorage.getItem('uid')
+    if (!uid) return
+    this.setState({ uid })
+  }
+
   syncNotes = () => {
     this.ref = base.syncState(
-      `${this.state.uid}/notes`,
+      `notes/${this.state.uid}`,
       {
         context: this,
         state: 'notes',
@@ -40,29 +48,39 @@ class App extends Component {
     )
   }
 
+  stopSyncing = () => {
+    if (this.ref) {
+      base.removeBinding(this.ref)
+    }
+  }
+
+  blankNote = () => {
+    return {
+      id: null,
+      title: '',
+      body: '',
+    }
+  }
+
   saveNote = (note) => {
     if (!note.id) {
       note.id = `note-${Date.now()}`
-      this.setCurrentNoteId(note.id)
     }
     const notes = {...this.state.notes}
     notes[note.id] = note
-    this.setState({ notes })
+    this.setState({
+      notes,
+      currentNote: note,
+    })
   }
 
   removeNote = (note) => {
     const notes = {...this.state.notes}
     notes[note.id] = null
-    this.setState({ notes })
-  }
-
-  addNote = () => {
-    const note = {
-      id: null,
-      title: '',
-      body: '',
-    }
-    this.saveNote(note)
+    this.resetCurrentNote()
+    this.setState(
+      { notes },
+    )
   }
 
   signedIn = () => {
@@ -70,6 +88,7 @@ class App extends Component {
   }
 
   authHandler = (user) => {
+    localStorage.setItem('uid', user.uid)
     this.setState(
       { uid: user.uid },
       this.syncNotes
@@ -81,42 +100,55 @@ class App extends Component {
       .signOut()
       .then(
         () => {
-          // stop syncing with Firebase
-          base.removeBinding(this.ref)
-          this.setState({ notes: {}})
+          this.stopSyncing()
+          this.setState({
+            notes: {},
+            currentNote: this.blankNote()
+          })
         }
       )
   }
 
-  setCurrentNoteId = (noteId) => {
-    this.setState({ currentNoteId: noteId })
+  setCurrentNote = (note) => {
+    this.setState({ currentNote: note })
   }
 
-  renderMain = () => {
+  resetCurrentNote = () => {
+    this.setCurrentNote(this.blankNote())
+  }
+
+  render() {
     const actions = {
       saveNote: this.saveNote,
       removeNote: this.removeNote,
-      setCurrentNoteId: this.setCurrentNoteId,
-      addNote: this.addNote,
+      setCurrentNote: this.setCurrentNote,
+      resetCurrentNote: this.resetCurrentNote,
       signOut: this.signOut,
     }
     const noteData = {
       notes: this.state.notes,
-      currentNoteId: this.state.currentNoteId,
+      currentNote: this.state.currentNote,
     }
 
     return (
-        <Main
-          {...noteData}
-          {...actions}
-        />
-    )
-  }
-
-  render() {
-    return (
       <div className="App">
-        { this.signedIn() ? this.renderMain() : <SignIn /> }
+        <Switch>
+          <Route path="/notes" render={() => (
+            this.signedIn()
+              ? <Main
+                  {...noteData}
+                  {...actions}
+                />
+              : <Redirect to="/sign-in" />
+          )} />
+          <Route path="/sign-in" render={() => (
+            !this.signedIn()
+              ? <SignIn />
+              : <Redirect to="/notes" />
+          )} />
+
+          <Route render={() => <Redirect to="/notes" />} />
+        </Switch>
       </div>
     )
   }
